@@ -12,16 +12,15 @@ public class ElectricCar extends ACar{
 
     @Override
     public int getRegistrationFee() {
-        int kmPerLitre = getWhPrKm();
-        if(kmPerLitre > 0 && kmPerLitre <= 5) {
+        if(getKmPrLitre() > 0 && getKmPrLitre() <= 5) {
             registrationFee = 10470;
-        } else if(kmPerLitre > 5 && kmPerLitre <= 10) {
+        } else if(getKmPrLitre() > 5 && getKmPrLitre() <= 10) {
             registrationFee = 5500;
-        } else if(kmPerLitre > 10 && kmPerLitre <= 15) {
+        } else if(getKmPrLitre() > 10 && getKmPrLitre() <= 15) {
             registrationFee = 2340;
-        } else if(kmPerLitre > 15 && kmPerLitre <= 20) {
+        } else if(getKmPrLitre() > 15 && getKmPrLitre() <= 20) {
             registrationFee = 1050;
-        } else if(kmPerLitre > 20) {
+        } else if(getKmPrLitre() > 20) {
             registrationFee = 330;
         }
         return registrationFee;
@@ -29,18 +28,18 @@ public class ElectricCar extends ACar{
     public int getBatteryCapacityKWh() {
         return batteryCapacity;
     }
-
     public int getMaxRangeKm() {
        return maxRangeKm;
-    };
-
+    }
     public int getWhPrKm() {
-        return (int)(100/(getBatteryCapacityKWh()/91.25));
-    };
-
+        return ((getBatteryCapacityKWh()*1000)/getMaxRangeKm());
+    }
+    public int getKmPrLitre() {
+        return (int)(100/(getWhPrKm()/91.25));
+    }
     @Override
     public String toString() {
-       return super.toString()+"\nFueltype: Electric\nMax Range: "+getMaxRangeKm()+" km.\nKm/l: "+getWhPrKm()+"\nRegistration fee: "+getRegistrationFee()+" kr.";
+       return super.toString()+"\nKm/l: "+getKmPrLitre()+"\nMax Range: "+getMaxRangeKm()+" km.\nWh/Km: "+getWhPrKm()+"\nFueltype: Electric\nRegistration fee: "+getRegistrationFee()+" kr.";
     }
 
 }

@@ -1,5 +1,5 @@
 public abstract class AFuelCar extends ACar {
-    private int kmPrLitre;
+    private final int kmPrLitre;
 
 
     AFuelCar(String registrationNumber, String make, String model, int numberOfDoors, int kmPrLitre) {
